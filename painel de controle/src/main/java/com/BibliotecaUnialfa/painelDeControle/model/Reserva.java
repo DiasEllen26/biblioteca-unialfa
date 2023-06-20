@@ -1,4 +1,4 @@
-package com.BibliotecaUnialfa.painelDeControle.Model;
+package com.BibliotecaUnialfa.painelDeControle.model;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
