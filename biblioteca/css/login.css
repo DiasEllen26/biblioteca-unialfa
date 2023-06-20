@@ -1,0 +1,44 @@
+@import url('https://fonts.cdnfonts.com/css/blackplotan');
+
+.gradient-custom-2 {
+    background: rgb(0,114,187);
+    background: -moz-linear-gradient(90deg, rgba(0,114,187,1) 5%, rgba(67,180,250,1) 39%, rgba(250,191,110,1) 100%);
+    background: -webkit-linear-gradient(90deg, rgba(0,114,187,1) 5%, rgba(67,180,250,1) 39%, rgba(250,191,110,1) 100%);
+    background: linear-gradient(90deg, rgba(0,114,187,1) 5%, rgba(67,180,250,1) 39%, rgba(250,191,110,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#0072bb",endColorstr="#fabf6e",GradientType=1);
+    }
+    
+.banner {
+    background: rgba( 255, 255, 255, 0.3 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 3.5px );
+    -webkit-backdrop-filter: blur( 3.5px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    font-family: 'Vagabond', sans-serif;
+    text-shadow: 2px 1px 2px #454444;                                               
+}
+
+@media (min-width: 768px) {
+    .gradient-form {
+    height: 100vh !important;
+    }
+}
+
+@media (min-width: 769px) {
+    .gradient-custom-2 {
+    border-top-right-radius: .3rem;
+    border-bottom-right-radius: .3rem;
+    }   
+}
+
+.h2 {
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: 2px;
+    word-spacing: 2px;
+    text-decoration: none;
+    font-style: normal;
+    font-variant: normal;
+    text-transform: none;
+    font-weight: bold;
+}
