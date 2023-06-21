@@ -1,13 +1,12 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:8889
--- Tempo de geração: 19/06/2023 às 23:27
--- Versão do servidor: 5.7.34
--- Versão do PHP: 8.0.8
+-- Host: 127.0.0.1
+-- Tempo de geração: 21-Jun-2023 às 03:01
+-- Versão do servidor: 10.4.27-MariaDB
+-- versão do PHP: 8.0.25
 
-SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
@@ -21,246 +20,208 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `biblioteca_unialfa`
 --
-CREATE DATABASE IF NOT EXISTS `biblioteca_unialfa` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `biblioteca_unialfa`;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `Aluno`
+-- Estrutura da tabela `aluno`
 --
 
-DROP TABLE IF EXISTS `Aluno`;
-CREATE TABLE `Aluno` (
+CREATE TABLE `aluno` (
   `id` bigint(20) NOT NULL,
-  `ra` int(11) NOT NULL,
-  `nome` varchar(255) NOT NULL,
-  `endereco` varchar(255) NOT NULL,
-  `cidade` varchar(255) NOT NULL,
-  `uf` varchar(255) NOT NULL,
-  `telefone` int(11) NOT NULL,
-  `curso_id` bigint(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `cidade` varchar(255) DEFAULT NULL,
+  `endereco` varchar(255) DEFAULT NULL,
+  `nome` varchar(255) DEFAULT NULL,
+  `ra` int(11) DEFAULT NULL,
+  `telefone` int(11) DEFAULT NULL,
+  `uf` varchar(255) DEFAULT NULL,
+  `curso_id` bigint(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Tabela truncada antes do insert `Aluno`
---
-
-TRUNCATE TABLE `Aluno`;
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `Autor`
+-- Estrutura da tabela `autor`
 --
 
-DROP TABLE IF EXISTS `Autor`;
-CREATE TABLE `Autor` (
+CREATE TABLE `autor` (
   `id` bigint(20) NOT NULL,
-  `nome` varchar(255) NOT NULL,
-  `endereco` varchar(255) NOT NULL,
-  `cidade` varchar(255) NOT NULL,
-  `uf` varchar(255) NOT NULL,
-  `telefone` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `cidade` varchar(255) DEFAULT NULL,
+  `endereco` varchar(255) DEFAULT NULL,
+  `nome` varchar(255) DEFAULT NULL,
+  `telefone` int(11) DEFAULT NULL,
+  `uf` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Tabela truncada antes do insert `Autor`
---
-
-TRUNCATE TABLE `Autor`;
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `Curso`
+-- Estrutura da tabela `curso`
 --
 
-DROP TABLE IF EXISTS `Curso`;
-CREATE TABLE `Curso` (
+CREATE TABLE `curso` (
   `id` bigint(20) NOT NULL,
-  `nome` varchar(255) NOT NULL,
-  `coorenador` varchar(255) NOT NULL,
-  `duracao` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `coordenador` varchar(255) DEFAULT NULL,
+  `duracao` varchar(255) DEFAULT NULL,
+  `nome` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Tabela truncada antes do insert `Curso`
---
-
-TRUNCATE TABLE `Curso`;
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `Editora`
+-- Estrutura da tabela `editora`
 --
 
-DROP TABLE IF EXISTS `Editora`;
-CREATE TABLE `Editora` (
+CREATE TABLE `editora` (
   `id` bigint(20) NOT NULL,
-  `nome` varchar(255) NOT NULL,
-  `endereco` varchar(255) NOT NULL,
-  `cidade` varchar(255) NOT NULL,
-  `uf` varchar(255) NOT NULL,
-  `telefone` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `cidade` varchar(255) DEFAULT NULL,
+  `endereco` varchar(255) DEFAULT NULL,
+  `nome` varchar(255) DEFAULT NULL,
+  `telefone` int(11) DEFAULT NULL,
+  `ud` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Tabela truncada antes do insert `Editora`
---
-
-TRUNCATE TABLE `Editora`;
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `Livro`
+-- Estrutura da tabela `livro`
 --
 
-DROP TABLE IF EXISTS `Livro`;
-CREATE TABLE `Livro` (
+CREATE TABLE `livro` (
   `id` bigint(20) NOT NULL,
-  `titulo` varchar(255) NOT NULL,
-  `subTitulo` varchar(255) NOT NULL,
-  `isbn` varchar(255) NOT NULL,
-  `autor_id` bigint(11) NOT NULL,
-  `editora_id` bigint(11) NOT NULL,
-  `local` varchar(255) NOT NULL,
-  `ano` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `ano` int(11) DEFAULT NULL,
+  `imagem_url` varchar(255) DEFAULT NULL,
+  `isbn` varchar(255) DEFAULT NULL,
+  `local` varchar(255) DEFAULT NULL,
+  `sub_titulo` varchar(255) DEFAULT NULL,
+  `titulo` varchar(255) DEFAULT NULL,
+  `autor_id` bigint(20) DEFAULT NULL,
+  `editora_id` bigint(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Tabela truncada antes do insert `Livro`
---
-
-TRUNCATE TABLE `Livro`;
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `Reserva`
+-- Estrutura da tabela `reserva`
 --
 
-DROP TABLE IF EXISTS `Reserva`;
-CREATE TABLE `Reserva` (
+CREATE TABLE `reserva` (
   `id` bigint(20) NOT NULL,
-  `aluno_id` bigint(20) NOT NULL,
-  `livro_id` bigint(20) NOT NULL,
-  `dataInicio` date NOT NULL,
-  `dataFim` date NOT NULL,
-  `observacao` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `data_fim` date DEFAULT NULL,
+  `data_inicio` date DEFAULT NULL,
+  `observacao` varchar(255) DEFAULT NULL,
+  `aluno_id` bigint(20) DEFAULT NULL,
+  `livro_id` bigint(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Tabela truncada antes do insert `Reserva`
---
-
-TRUNCATE TABLE `Reserva`;
 --
 -- Índices para tabelas despejadas
 --
 
 --
--- Índices de tabela `Aluno`
+-- Índices para tabela `aluno`
 --
-ALTER TABLE `Aluno`
+ALTER TABLE `aluno`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `AlunoToCurso` (`curso_id`);
+  ADD KEY `FK9o09o8qj4x9uf9okvf622jyec` (`curso_id`);
 
 --
--- Índices de tabela `Autor`
+-- Índices para tabela `autor`
 --
-ALTER TABLE `Autor`
+ALTER TABLE `autor`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices de tabela `Curso`
+-- Índices para tabela `curso`
 --
-ALTER TABLE `Curso`
+ALTER TABLE `curso`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices de tabela `Editora`
+-- Índices para tabela `editora`
 --
-ALTER TABLE `Editora`
+ALTER TABLE `editora`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices de tabela `Livro`
+-- Índices para tabela `livro`
 --
-ALTER TABLE `Livro`
+ALTER TABLE `livro`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `LivroToAutor` (`autor_id`),
-  ADD KEY `LivroToEditora` (`editora_id`);
+  ADD KEY `FKrp0atct0grsplospsqqay36vy` (`autor_id`),
+  ADD KEY `FK5xraqrxa0g1fgg2tib1c1ojpo` (`editora_id`);
 
 --
--- Índices de tabela `Reserva`
+-- Índices para tabela `reserva`
 --
-ALTER TABLE `Reserva`
+ALTER TABLE `reserva`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `ReservaToAluno` (`aluno_id`),
-  ADD KEY `ReservaToLivro` (`livro_id`);
+  ADD KEY `FK4wnugkdothscdbyhksjqjip1i` (`aluno_id`),
+  ADD KEY `FKt8snawo8trx89k39hq2r73x08` (`livro_id`);
 
 --
--- AUTO_INCREMENT para tabelas despejadas
+-- AUTO_INCREMENT de tabelas despejadas
 --
 
 --
--- AUTO_INCREMENT de tabela `Aluno`
+-- AUTO_INCREMENT de tabela `aluno`
 --
-ALTER TABLE `Aluno`
+ALTER TABLE `aluno`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de tabela `Autor`
+-- AUTO_INCREMENT de tabela `autor`
 --
-ALTER TABLE `Autor`
+ALTER TABLE `autor`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de tabela `Curso`
+-- AUTO_INCREMENT de tabela `curso`
 --
-ALTER TABLE `Curso`
+ALTER TABLE `curso`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de tabela `Editora`
+-- AUTO_INCREMENT de tabela `editora`
 --
-ALTER TABLE `Editora`
+ALTER TABLE `editora`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de tabela `Livro`
+-- AUTO_INCREMENT de tabela `livro`
 --
-ALTER TABLE `Livro`
+ALTER TABLE `livro`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de tabela `Reserva`
+-- AUTO_INCREMENT de tabela `reserva`
 --
-ALTER TABLE `Reserva`
+ALTER TABLE `reserva`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
--- Restrições para tabelas despejadas
+-- Restrições para despejos de tabelas
 --
 
 --
--- Restrições para tabelas `Aluno`
+-- Limitadores para a tabela `aluno`
 --
-ALTER TABLE `Aluno`
-  ADD CONSTRAINT `AlunoToCurso` FOREIGN KEY (`curso_id`) REFERENCES `Curso` (`id`);
+ALTER TABLE `aluno`
+  ADD CONSTRAINT `FK9o09o8qj4x9uf9okvf622jyec` FOREIGN KEY (`curso_id`) REFERENCES `curso` (`id`);
 
 --
--- Restrições para tabelas `Livro`
+-- Limitadores para a tabela `livro`
 --
-ALTER TABLE `Livro`
-  ADD CONSTRAINT `LivroToAutor` FOREIGN KEY (`autor_id`) REFERENCES `Autor` (`id`),
-  ADD CONSTRAINT `LivroToEditora` FOREIGN KEY (`editora_id`) REFERENCES `Editora` (`id`);
+ALTER TABLE `livro`
+  ADD CONSTRAINT `FK5xraqrxa0g1fgg2tib1c1ojpo` FOREIGN KEY (`editora_id`) REFERENCES `editora` (`id`),
+  ADD CONSTRAINT `FKrp0atct0grsplospsqqay36vy` FOREIGN KEY (`autor_id`) REFERENCES `autor` (`id`);
 
 --
--- Restrições para tabelas `Reserva`
+-- Limitadores para a tabela `reserva`
 --
-ALTER TABLE `Reserva`
-  ADD CONSTRAINT `ReservaToAluno` FOREIGN KEY (`aluno_id`) REFERENCES `Aluno` (`id`),
-  ADD CONSTRAINT `ReservaToLivro` FOREIGN KEY (`livro_id`) REFERENCES `Livro` (`id`);
-SET FOREIGN_KEY_CHECKS=1;
+ALTER TABLE `reserva`
+  ADD CONSTRAINT `FK4wnugkdothscdbyhksjqjip1i` FOREIGN KEY (`aluno_id`) REFERENCES `aluno` (`id`),
+  ADD CONSTRAINT `FKt8snawo8trx89k39hq2r73x08` FOREIGN KEY (`livro_id`) REFERENCES `livro` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
