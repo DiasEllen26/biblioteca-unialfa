@@ -1,8 +1,8 @@
 <?php
     $servidor = "localhost";
     $usuario  = "root";
-    $senha    = "root"; // "" no xamp
-    $banco    = "BANCO";
+    $senha    = "root"; 
+    $banco    = "biblioteca-unialfa";
 
     try {
         $pdo = new PDO("mysql:host={$servidor};dbname={$banco};port=8889;charset=utf8;",$usuario,$senha);
