@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Livros</title>
+</head>
+<body>
+  <h1>Livro</h1>
+
+ <div th:each="livro : ${livros}">
+     <img src="${livro.imagemUrl}" alt="">
+     
+ </div>
+</body>
+</html>

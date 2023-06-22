@@ -30,6 +30,8 @@ public class Livro {
     private Editora editoraId;
     @Column(name = "local")
     private String local;
+    @Column(name = "imagem_url")
+    private String imagemUrl;
     @Column(name = "ano")
     private Integer ano;
 }

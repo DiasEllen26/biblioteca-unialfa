@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastrar Livro</title>
+</head>
+<body>
+<form th:action="@{/livro/cadastrar}" method="post" enctype="multipart/form-data">
+  <input type="file" accept="image/*" name="file"  />
+  <br>
+  <button type="submit">Enviar</button>
+</form>
+</body>
+</html>
