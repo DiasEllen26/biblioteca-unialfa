@@ -1,6 +1,8 @@
 package com.BibliotecaUnialfa.painelDeControle.controller;
 
 import com.BibliotecaUnialfa.painelDeControle.model.Livro;
+import com.BibliotecaUnialfa.painelDeControle.servicie.AutorServicie;
+import com.BibliotecaUnialfa.painelDeControle.servicie.EditoraServicie;
 import com.BibliotecaUnialfa.painelDeControle.servicie.LivroServicie;
 import com.cloudinary.utils.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,33 +27,40 @@ public class LivroController {
 
 
     @Autowired
-    private LivroServicie servicie;
+    private LivroServicie service;
+    @Autowired
+    private AutorServicie serviceAutor;
+    @Autowired
+    private EditoraServicie serviceEditora;
 
     @GetMapping("/")
     public String index(Model model){
         model.addAttribute("MensagemTelaInicil", "Todos os Livros!");
-        model.addAttribute("livros", servicie.listarTodos());
+        model.addAttribute("livros", service.listarTodos());
         return "livro/lista";
     }
 
     @GetMapping("/formulario")
     public String formulario(Model model, Livro livro){
+
         model.addAttribute("MensagemTelaInicil", "Cadastrar novo livro!");
+        model.addAttribute("autores", serviceAutor.listarTodos());
+        model.addAttribute("editoras", serviceEditora.listarTodos());
         return "livro/formulario";
     }
     @PostMapping("/cadastrar")
     public String cadastrar(@RequestParam("file")MultipartFile file, Livro livro) throws IOException {
-        Map uploadResult = cloudinary.uploader().upload(file.getBytes(), ObjectUtils.emptyMap());
-        String imageUrl = (String) uploadResult.get("secure_url");
         try {
+            Map uploadResult = cloudinary.uploader().upload(file.getBytes(), ObjectUtils.emptyMap());
+            String imageUrl = (String) uploadResult.get("secure_url");
             livro.setImagemUrl(imageUrl);
             System.out.println(imageUrl);
-            servicie.salvar(livro);
+            service.salvar(livro);
             return "redirect:/livro/";
         }catch (Exception e){
             System.out.println("Erro de IO ao excluir a imagem: " + e.getMessage());
             livro.setImagemUrl("https://res.cloudinary.com/ddsjxmzpg/image/upload/v1687396258/ndk0zxlashgwgzf9v8dq.jpg");
-            servicie.salvar(livro);
+            service.salvar(livro);
             return "redirect:/livro/";
         }
 
@@ -60,18 +69,18 @@ public class LivroController {
     @GetMapping("/alterar/{id}")
     public String editar(@PathVariable Long id, Model model){
         model.addAttribute("MensagemTelaInicil", "Editar dados do livro!");
-        model.addAttribute("livro", servicie.listarTodos());
+        model.addAttribute("livro", service.listarTodos());
         return "livro/formulario";
     }
 
 
     @GetMapping("deletar/{id}")
     public String deletar(@PathVariable Long id) throws IOException{
-        var livro = servicie.buscarPorId(id);
+        var livro = service.buscarPorId(id);
         String imagePublicId = livro.getImagemUrl();
         try {
             cloudinary.uploader().destroy(imagePublicId, ObjectUtils.emptyMap());
-            servicie.deletarPorId(id);
+            service.deletarPorId(id);
             return "redirect:/livro/";
         } catch (IOException e) {
             System.out.println("Erro de IO ao excluir a imagem: " + e.getMessage());

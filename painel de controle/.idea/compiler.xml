@@ -8,11 +8,13 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="painelDeControle" />
+        <module name="painel de controle" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="painel de controle" options="-parameters" />
       <module name="painelDeControle" options="-parameters" />
     </option>
   </component>
