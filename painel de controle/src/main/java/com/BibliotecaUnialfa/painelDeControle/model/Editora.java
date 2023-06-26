@@ -25,5 +25,5 @@ public class Editora {
     @Column(name = "ud")
     private String uf;
     @Column(name = "telefone")
-    private Integer telefone;
+    private String telefone;
 }

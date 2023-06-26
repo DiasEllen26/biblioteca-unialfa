@@ -25,5 +25,5 @@ public class Autor {
     @Column(name = "uf")
     private String uf;
     @Column(name = "telefone")
-    private Integer telefone;
+    private String telefone;
 }

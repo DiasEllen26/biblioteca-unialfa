@@ -1,8 +1,8 @@
 package com.BibliotecaUnialfa.painelDeControle.controller;
 
 import com.BibliotecaUnialfa.painelDeControle.model.Livro;
-import com.BibliotecaUnialfa.painelDeControle.servicie.AutorServicie;
-import com.BibliotecaUnialfa.painelDeControle.servicie.EditoraServicie;
+import com.BibliotecaUnialfa.painelDeControle.servicie.AutorService;
+import com.BibliotecaUnialfa.painelDeControle.servicie.EditoraService;
 import com.BibliotecaUnialfa.painelDeControle.servicie.LivroServicie;
 import com.cloudinary.utils.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,9 +29,9 @@ public class LivroController {
     @Autowired
     private LivroServicie service;
     @Autowired
-    private AutorServicie serviceAutor;
+    private AutorService serviceAutor;
     @Autowired
-    private EditoraServicie serviceEditora;
+    private EditoraService serviceEditora;
 
     @GetMapping("/")
     public String index(Model model){
