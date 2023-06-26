@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class AutorServicie {
+public class AutorService {
 
     @Autowired
     private AutorRepository repository;
