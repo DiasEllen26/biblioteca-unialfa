@@ -67,7 +67,6 @@ public class LivroController {
             service.salvar(livro);
             return "redirect:/livro/lista";
         }catch (Exception e){
-            System.out.println("Erro de IO ao excluir a imagem: " + e.getMessage());
             livro.setImagemUrl("https://res.cloudinary.com/ddsjxmzpg/image/upload/v1687396258/ndk0zxlashgwgzf9v8dq.jpg");
             service.salvar(livro);
             return "redirect:/livro/lista";
