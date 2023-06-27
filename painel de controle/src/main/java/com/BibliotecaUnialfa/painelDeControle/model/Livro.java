@@ -28,8 +28,8 @@ public class Livro {
     private String subTitulo;
     @NotBlank(message = "o isbn é obrigatorio")
     @Size(max = 255, message = "O IBSN deve ter no máximo 255 caracteres")
-    @Column(name = "isbn")
-    private String isbn;
+    @Column(name = "ibsn")
+    private String ibsn;
     @NotNull(message = "O Autor é obrigatório!")
     @ManyToOne
     @JoinColumn(name = "autor_id")
@@ -48,4 +48,9 @@ public class Livro {
     @Digits(integer = 4, fraction = 0, message = "O ano deve ter 4 dígitos")
     @Column(name = "ano")
     private Integer ano;
+    @NotBlank(message = "O genêro é obrigatório")
+    @Size(max = 255, message = "O genêro deve ter no máximo 255 caracteres")
+    @Column(name = "genero")
+    private String genero;
+
 }

@@ -5,6 +5,7 @@
     <title>Livros</title>
 </head>
 <body>
+
   <h1>Livro</h1>
   <div class="d-flex row">
       <div th:each="livro : ${livros}" class="card" style="width: 18rem;">
@@ -13,17 +14,19 @@
               <label>Titulo:</label>
               <h5 class="card-title" th:text="${livro.titulo}"></h5>
               <label>SubTitulo:</label>
-              <p class="card-text" th:text="${livro.subTitulo}"</p>
+              <p class="card-text" th:text="${livro.subTitulo}"></p>
               <label>ISBN:</label>
-              <p class="card-text" th:text="${livro.isbn}"</p>
+              <p class="card-text" th:text="${livro.ibsn}"></p>
+              <label>Genêro</label>
+              <p class="card-text" th:text="${livro.genero}"></p>
               <label>Autor:</label>
-              <p class="card-text" th:text="${livro.autorId.nome}"</p>
+              <p class="card-text" th:text="${livro.autorId.nome}"></p>
               <label>Editora:</label>
-              <p class="card-text" th:text="${livro.editoraId.nome}"</p>
+              <p class="card-text" th:text="${livro.editoraId.nome}"></p>
               <label>Local:</label>
-              <p class="card-text" th:text="${livro.local}"</p>
+              <p class="card-text" th:text="${livro.local}"></p>
               <label>Ano:</label>
-              <p class="card-text" th:text="${livro.ano}"</p>
+              <p class="card-text" th:text="${livro.ano}"></p>
           </div>
           <a href="" class="btn btn-primary">Reservar</a>
       </div>

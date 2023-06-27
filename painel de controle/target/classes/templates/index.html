@@ -7,20 +7,255 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.all.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.min.css" rel="stylesheet">
+
+    <script th:src="@{vendor/jquery/jquery.min.js}"></script>
+
+    <script th:src="@{js/lightbox-plus-jquery.min.js}"></script>
+
+    <script th:src="@{vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+    <link rel="stylesheet" th:href="@{https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css}">
+
+    <script type="text/javascript" th:src="@{vendor/summernote/summernote.min.js}"></script>
+    <script type="text/javascript" th:src="@{vendor/summernote/summernote-bs4.min.js}"></script>
+    <script th:src="@{vendor/summernote/lang/summernote-pt-BR.js}"></script>
+    <!-- Core plugin JavaScript-->
+    <script th:src="@{vendor/jquery-easing/jquery.easing.min.js}"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script th:src="@{js/sb-admin-2.min.js}"></script>
+
+
+    <!-- Outros Javascript -->
+    <script th:src="@{js/parsley.min.js}"></script>
+
+    <script th:src="@{js/jquery.inputmask.min.js}"></script>
+    <script th:src="@{js/bindings/inputmask.binding.js}"></script>
+    <script th:src="@{js/jquery.maskMoney.min.js}"></script>
+    <script th:src="@{vendor/datatables/jquery.dataTables.min.js}"></script>
+    <script th:src="@{vendor/datatables/dataTables.bootstrap4.min.js}"></script>
+    <script th:src="@{js/sweetalert2.min.js}"></script>
+
+    <!-- Custom fonts for this template-->
+    <link th:href="@{vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{vendor/datatables/dataTables.bootstrap4.min.css}" rel="stylesheet" type="text/css">
+    <link
+            th:href="@{https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i}"
+            rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link th:href="@{css/sb-admin-2.min.css}" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{css/sweetalert2.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{css/style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{css/lightbox.min.css}">
 </head>
 <body>
 
-    <div class="container">
-        <a type="button" class="btn btn-outline-primary" th:href="@{/aluno/lista}">Alunos</a>
-        <a type="button" class="btn btn-outline-primary" th:href="@{/autor/lista}">Autores</a>
-        <a type="button" class="btn btn-outline-primary" th:href="@{/curso/lista}">Cursos</a>
-        <a type="button" class="btn btn-outline-primary" th:href="@{/editora/lista}">Editoras</a>
-        <a type="button" class="btn btn-outline-primary" th:href="@{/livro/lista}">Livros</a>
-        <a type="button" class="btn btn-outline-primary" th:href="@{/reserva/lista}">Reservas</a>
-        <h1><span th:text="${boasVindas}"></span></h1>
+
+<!-- Page Wrapper -->
+<div id="wrapper" th:fragment="header">
+
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+
+            <img src="images/logo.png" alt="Logo Unialfa">
+
+        </a>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item active">
+            <a class="nav-link" href="index.php">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Dashboard</span></a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
 
 
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+               aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fas fa-fw fa-plus"></i>
+                <span>Livro</span>
+            </a>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" th:href="@{livro/lista}"><i class="fas fa-tags"></i>Lista</a>
+                    <a class="collapse-item" th:href="@{livro/formulario}"><i class="fas fa-gift"></i>Cadstrar</a>
+                </div>
+            </div>
+        </li>
+
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+               aria-expanded="true" aria-controls="collapsePages">
+                <i class="fas fa-fw fa-folder"></i>
+                <span>Reservas</span>
+            </a>
+            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="relatorios/produtos"><i class="fas fa-shopping-cart"></i> Produtos</a>
+                    <a class="collapse-item" href="relatorios/usuarios"><i class="fas fa-users"></i> Usuários</a>
+                    <a class="collapse-item"
+                       href="relatorios/log">
+                        <i class="fas fa-file"></i> Log
+                    </a>
+                </div>
+            </div>
+        </li>
+
+        <hr class="sidebar-divider">
+
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+               aria-expanded="true" aria-controls="collapsePages">
+                <i class="fas fa-fw fa-folder"></i>
+                <span>Editoras</span>
+            </a>
+            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="relatorios/produtos"><i class="fas fa-shopping-cart"></i> Produtos</a>
+                    <a class="collapse-item" href="relatorios/usuarios"><i class="fas fa-users"></i> Usuários</a>
+                    <a class="collapse-item"
+                       href="relatorios/log">
+                        <i class="fas fa-file"></i> Log
+                    </a>
+                </div>
+            </div>
+        </li>
+
+        <hr class="sidebar-divider">
+
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+               aria-expanded="true" aria-controls="collapsePages">
+                <i class="fas fa-fw fa-folder"></i>
+                <span>Autores</span>
+            </a>
+            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="relatorios/produtos"><i class="fas fa-shopping-cart"></i> Produtos</a>
+                    <a class="collapse-item" href="relatorios/usuarios"><i class="fas fa-users"></i> Usuários</a>
+                    <a class="collapse-item"
+                       href="relatorios/log">
+                        <i class="fas fa-file"></i> Log
+                    </a>
+                </div>
+            </div>
+        </li>
+
+        <hr class="sidebar-divider">
+
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+               aria-expanded="true" aria-controls="collapsePages">
+                <i class="fas fa-fw fa-folder"></i>
+                <span>Alunos</span>
+            </a>
+            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="relatorios/produtos"><i class="fas fa-shopping-cart"></i> Produtos</a>
+                    <a class="collapse-item" href="relatorios/usuarios"><i class="fas fa-users"></i> Usuários</a>
+                    <a class="collapse-item"
+                       href="relatorios/log">
+                        <i class="fas fa-file"></i> Log
+                    </a>
+                </div>
+            </div>
+        </li>
+
+        <hr class="sidebar-divider">
+
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+               aria-expanded="true" aria-controls="collapsePages">
+                <i class="fas fa-fw fa-folder"></i>
+                <span>Cursos</span>
+            </a>
+            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="relatorios/produtos"><i class="fas fa-shopping-cart"></i> Produtos</a>
+                    <a class="collapse-item" href="relatorios/usuarios"><i class="fas fa-users"></i> Usuários</a>
+                    <a class="collapse-item"
+                       href="relatorios/log">
+                        <i class="fas fa-file"></i> Log
+                    </a>
+                </div>
+            </div>
+        </li>
+
+    </ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Topbar -->
+            <nav th:fragment="navbar" class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                <!-- Sidebar Toggle (Topbar) -->
+                <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                    <i class="fa fa-bars"></i>
+                </button>
+
+
+                <!-- Topbar Navbar -->
+                <ul class="navbar-nav ml-auto">
+
+                    <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                    <li class="nav-item dropdown no-arrow d-sm-none">
+                        <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                    </li>
+
+                    <!-- Nav Item - Alerts -->
+
+                    <div class="topbar-divider d-none d-sm-block"></div>
+
+                </ul>
+
+            </nav>
+            <!-- End of Topbar -->
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+                <div class="container" >
+                    <a type="button" class="btn btn-outline-primary" th:href="@{/aluno/lista}">Alunos</a>
+                    <a type="button" class="btn btn-outline-primary" th:href="@{/autor/lista}">Autores</a>
+                    <a type="button" class="btn btn-outline-primary" th:href="@{/curso/lista}">Cursos</a>
+                    <a type="button" class="btn btn-outline-primary" th:href="@{/editora/lista}">Editoras</a>
+                    <a type="button" class="btn btn-outline-primary" th:href="@{/livro/lista}">Livros</a>
+                    <a type="button" class="btn btn-outline-primary" th:href="@{/reserva/lista}">Reservas</a>
+                    <h1><span th:text="${boasVindas}"></span></h1>
+                </div>
+            </div>
     </div>
+        <footer >
+            <h3 class="text-center">Desenvolvido por joão</h3>
+        </footer>
+
 
 </body>
 </html>
