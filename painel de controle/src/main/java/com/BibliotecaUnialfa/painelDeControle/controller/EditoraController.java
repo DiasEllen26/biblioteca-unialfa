@@ -42,7 +42,7 @@ public class EditoraController {
 
     @GetMapping("/alterar/{id}")
     public String alterar(@PathVariable Long id, Model model) {
-        model.addAttribute("boasVindas", "Cadastro de editoras");
+        model.addAttribute("boasVindas", "Editar dados de editoras");
         model.addAttribute("editora", service.buscarPorId(id));
         return "editora/formulario";
     }

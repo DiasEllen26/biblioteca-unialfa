@@ -1,37 +1,213 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
-<head th:insert="index.html :: head">
+<head th:insert="index :: head">
     <meta charset="UTF-8">
     <title>Livros</title>
 </head>
 <body>
+<!-- Page Wrapper -->
+<div id="wrapper">
 
-  <h1>Livro</h1>
-  <div class="d-flex row">
-      <div th:each="livro : ${livros}" class="card" style="width: 18rem;">
-          <img th:src="${livro.imagemUrl}" class="card-img-top" alt="foto do livro">
-          <div class="card-body" >
-              <label>Titulo:</label>
-              <h5 class="card-title" th:text="${livro.titulo}"></h5>
-              <label>SubTitulo:</label>
-              <p class="card-text" th:text="${livro.subTitulo}"></p>
-              <label>ISBN:</label>
-              <p class="card-text" th:text="${livro.ibsn}"></p>
-              <label>Genêro</label>
-              <p class="card-text" th:text="${livro.genero}"></p>
-              <label>Autor:</label>
-              <p class="card-text" th:text="${livro.autorId.nome}"></p>
-              <label>Editora:</label>
-              <p class="card-text" th:text="${livro.editoraId.nome}"></p>
-              <label>Local:</label>
-              <p class="card-text" th:text="${livro.local}"></p>
-              <label>Ano:</label>
-              <p class="card-text" th:text="${livro.ano}"></p>
-          </div>
-          <a href="" class="btn btn-primary">Reservar</a>
-      </div>
-  </div>
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-  <a th:href="@{/livro/formulario}" class="btn btn-outline-primary text-center">Cadastrar novo livro</a>
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" th:href="@{/}">
+            <img th:src="@{/images/logo2.png}" class="img-thumbnail" alt="Logo Unialfa">
+        </a>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+               aria-expanded="true" aria-controls="collapseTwo">
+                <i class="bi bi-book-fill"></i>
+                <span>Livro</span>
+            </a>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" th:href="@{/livro/lista}"><i class="bi bi-list-task"></i> Lista</a>
+                    <a class="collapse-item" th:href="@{/livro/formulario}"><i class="bi bi-card-checklist"></i> Cadstrar</a>
+                </div>
+            </div>
+        </li>
+
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+               aria-expanded="true" aria-controls="collapsePages">
+                <i class="bi bi-calendar-date-fill"></i>
+                <span>Reservas</span>
+            </a>
+            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" th:href="@{/reserva/lista}"><i class="bi bi-list-task"></i> Lista</a>
+                    <a class="collapse-item" th:href="@{/reserva/formulario}"><i class="bi bi-card-checklist"></i> Cadstrar</a>
+                </div>
+            </div>
+        </li>
+
+        <hr class="sidebar-divider">
+
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEditora"
+               aria-expanded="true" aria-controls="collapsePages">
+                <i class="bi bi-building-fill"></i>
+                <span>Editoras</span>
+            </a>
+            <div id="collapseEditora" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" th:href="@{/editora/lista}"><i class="bi bi-list-task"></i> Lista</a>
+                    <a class="collapse-item" th:href="@{/editora/formulario}"><i class="bi bi-card-checklist"></i> Cadstrar</a>
+                </div>
+            </div>
+        </li>
+
+        <hr class="sidebar-divider">
+
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAutores"
+               aria-expanded="true" aria-controls="collapsePages">
+                <i class="bi bi-person-lines-fill"></i>
+                <span>Autores</span>
+            </a>
+            <div id="collapseAutores" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" th:href="@{/autor/lista}"><i class="bi bi-list-task"></i> Lista</a>
+                    <a class="collapse-item" th:href="@{/autor/formulario}"><i class="bi bi-card-checklist"></i> Cadstrar</a>
+                </div>
+            </div>
+        </li>
+
+        <hr class="sidebar-divider">
+
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAlunos"
+               aria-expanded="true" aria-controls="collapsePages">
+                <i class="bi bi-people-fill"></i>
+                <span>Alunos</span>
+            </a>
+            <div id="collapseAlunos" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" th:href="@{/aluno/lista}"><i class="bi bi-list-task"></i> Lista</a>
+                    <a class="collapse-item" th:href="@{/aluno/formulario}"><i class="bi bi-card-checklist"></i> Cadstrar</a>
+                </div>
+            </div>
+        </li>
+
+        <hr class="sidebar-divider">
+
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCursos"
+               aria-expanded="true" aria-controls="collapsePages">
+                <i class="bi bi-mortarboard-fill"></i>
+                <span>Cursos</span>
+            </a>
+            <div id="collapseCursos" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" th:href="@{/curso/lista}"><i class="bi bi-list-task"></i> Lista</a>
+                    <a class="collapse-item" th:href="@{/curso/formulario}"><i class="bi bi-card-checklist"></i> Cadstrar</a>
+                </div>
+            </div>
+        </li>
+
+    </ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Topbar -->
+            <nav  class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                <!-- Sidebar Toggle (Topbar) -->
+                <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                    <i class="fa fa-bars"></i>
+                </button>
+
+
+                <!-- Topbar Navbar -->
+                <ul class="navbar-nav ml-auto">
+
+                    <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                    <li class="nav-item dropdown no-arrow d-sm-none">
+                        <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                    </li>
+
+                    <!-- Nav Item - Alerts -->
+
+                    <div class="topbar-divider d-none d-sm-block"></div>
+
+                </ul>
+
+            </nav>
+            <!-- End of Topbar -->
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid text-center">
+                <h1>Livros</h1>
+                <form action="/livro/pesquisar" method="GET">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" name="termo" placeholder="Digite o termo de pesquisa">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-primary" type="submit">Pesquisar</button>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="d-flex row">
+                    <div th:each="livro : ${livros}" class="card" style="width: 18rem;">
+                        <img th:src="${livro.imagemUrl}" class="card-img-top img-thumbnail" alt="foto do livro">
+                        <div class="card-body" >
+                            <label><strong>Titulo:</strong></label>
+                            <h5 class="card-title" th:text="${livro.titulo}"></h5>
+                            <label><strong>SubTitulo:</strong></label>
+                            <p class="card-text" th:text="${livro.subTitulo}"></p>
+                            <label><strong>IBSN:</strong></label>
+                            <p class="card-text" th:text="${livro.ibsn}"></p>
+                            <label><strong>Genêro:</strong></label>
+                            <p class="card-text" th:text="${livro.genero}"></p>
+                            <label><strong>Autor:</strong></label>
+                            <p class="card-text" th:text="${livro.autorId.nome}"></p>
+                            <label><strong>Editora:</strong></label>
+                            <p class="card-text" th:text="${livro.editoraId.nome}"></p>
+                            <label><strong>Local:</strong></label>
+                            <p class="card-text" th:text="${livro.local}"></p>
+                            <label><strong>Ano:</strong></label>
+                            <p class="card-text" th:text="${livro.ano}"></p>
+                        </div>
+                        <br>
+                        <a th:href="@{'/livro/alterar/' + ${livro.id}}" class="btn btn-success"><i class="bi bi-pencil-square"></i> Editar</a>
+                        <br>
+                        <a th:href="@{'/livro/deletar/' + ${livro.id}}" class="btn btn-danger"><i class="bi bi-trash3-fill"></i> Deletar</a>
+                    </div>
+                </div>
+                <a th:href="@{/livro/formulario}" class="btn btn-outline-primary text-center" style="margin:0 auto;">Cadastrar novo livro</a>
+            </div>
+        </div>
+        <br><br>
+        <footer >
+            <h3 class="text-center">Desenvolvido por joão Ellen Vitor</h3>
+        </footer>
+
+
+</div>
 </body>
 </html>

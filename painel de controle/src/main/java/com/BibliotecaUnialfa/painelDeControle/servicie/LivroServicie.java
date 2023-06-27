@@ -14,6 +14,10 @@ public class LivroServicie {
 
     public void salvar(Livro livro){repository.save(livro);}
     public List<Livro> listarTodos(){return  repository.findAll();}
+    public List<Livro> pesquisarLivros(String termo) {
+        return repository.findByTituloContainingIgnoreCase(termo);
+    }
+
     public Livro buscarPorId(Long id){return repository.findById(id).get();}
     public void deletarPorId(Long id){repository.deleteById(id);}
 }
