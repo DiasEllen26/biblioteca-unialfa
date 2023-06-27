@@ -6,7 +6,10 @@ import com.BibliotecaUnialfa.painelDeControle.servicie.EditoraService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("editora")
@@ -28,7 +31,11 @@ public class EditoraController {
     }
 
     @PostMapping("/cadastrar")
-    public String salvar(Editora editora) {
+    public String salvar(@Valid Editora editora, BindingResult result, Model model) {
+        if(result.hasErrors()){
+            model.addAttribute("errors", result.getAllErrors());
+            return "editora/formulario";
+        }
         service.salvar(editora);
         return "redirect:/editora/lista";
     }
@@ -45,6 +52,5 @@ public class EditoraController {
         service.deletarPorId(id);
         return "redirect:/editora/lista";
     }
-
 
 }

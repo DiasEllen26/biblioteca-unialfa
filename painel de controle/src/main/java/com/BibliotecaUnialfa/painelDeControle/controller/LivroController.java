@@ -8,11 +8,13 @@ import com.cloudinary.utils.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.cloudinary.*;
 
+import javax.validation.Valid;
 import java.io.IOException;
 import java.util.Map;
 
@@ -33,7 +35,7 @@ public class LivroController {
     @Autowired
     private EditoraService serviceEditora;
 
-    @GetMapping("/")
+    @GetMapping("/lista")
     public String index(Model model){
         model.addAttribute("MensagemTelaInicil", "Todos os Livros!");
         model.addAttribute("livros", service.listarTodos());
@@ -49,23 +51,29 @@ public class LivroController {
         return "livro/formulario";
     }
     @PostMapping("/cadastrar")
-    public String cadastrar(@RequestParam("file")MultipartFile file, Livro livro) throws IOException {
+    public String cadastrar(@RequestParam("file")MultipartFile file, @Valid Livro livro, BindingResult result, Model model) throws IOException {
+        if(result.hasErrors()){
+            model.addAttribute("errors", result.getAllErrors());
+            model.addAttribute("autores", serviceAutor.listarTodos());
+            model.addAttribute("editoras", serviceEditora.listarTodos());
+            return "livro/formulario";
+        }
+
         try {
             Map uploadResult = cloudinary.uploader().upload(file.getBytes(), ObjectUtils.emptyMap());
             String imageUrl = (String) uploadResult.get("secure_url");
             livro.setImagemUrl(imageUrl);
             System.out.println(imageUrl);
             service.salvar(livro);
-            return "redirect:/livro/";
+            return "redirect:/livro/lista";
         }catch (Exception e){
             System.out.println("Erro de IO ao excluir a imagem: " + e.getMessage());
             livro.setImagemUrl("https://res.cloudinary.com/ddsjxmzpg/image/upload/v1687396258/ndk0zxlashgwgzf9v8dq.jpg");
             service.salvar(livro);
-            return "redirect:/livro/";
+            return "redirect:/livro/lista";
         }
 
     }
-
     @GetMapping("/alterar/{id}")
     public String editar(@PathVariable Long id, Model model){
         model.addAttribute("MensagemTelaInicil", "Editar dados do livro!");

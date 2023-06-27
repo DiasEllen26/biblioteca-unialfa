@@ -5,7 +5,10 @@ import com.BibliotecaUnialfa.painelDeControle.service.CursoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("curso")
@@ -27,7 +30,11 @@ public class CursoController {
     }
 
     @PostMapping("/cadastrar")
-    public String salvar(Curso curso) {
+    public String salvar(@Valid Curso curso, BindingResult result, Model model) {
+        if(result.hasErrors()){
+            model.addAttribute("errors", result.getAllErrors());
+            return "curso/formulario";
+        }
         service.salvar(curso);
         return "redirect:/curso/lista";
     }
