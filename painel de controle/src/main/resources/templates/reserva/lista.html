@@ -27,14 +27,14 @@
         <tbody>
         <tr th:each="reserva : ${listaDeReservas}">
             <td th:text="${reserva.id}"></td>
-            <td th:text="${reserva.aluno.nome}"></td>
-            <td th:text="${reserva.livro.titulo}"></td>
+            <td th:text="${reserva.alunoId.nome}"></td>
+            <td th:text="${reserva.livroId.titulo}"></td>
             <td th:text="${reserva.dataInicio}"></td>
             <td th:text="${reserva.dataFim}"></td>
             <td th:text="${reserva.observacao}"></td>
             <td>
                 <a class="btn btn-warning"
-                   th:href="@{/reserva/editar/{id}(id=${reserva.id})}">Editar</a>
+                   th:href="@{/reserva/alterar/{id}(id=${reserva.id})}">Editar</a>
                 <a class="btn btn-danger"
                    th:href="@{/reserva/excluir/{id}(id=${reserva.id})}">Excluir</a>
             </td>

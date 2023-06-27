@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt-br"  xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:insert="index.html :: head">
     <meta charset="UTF-8">
-    <title>Cadastrar Livro</title>
+    <title>Livros</title>
 </head>
 <body>
 <form>
@@ -14,8 +14,8 @@
     <label for="subtitulo">Subtítulo:</label>
     <input type="text" id="subtitulo" name="subTitulo" />
 
-    <label for="isbn">ISBN:</label>
-    <input type="text" id="isbn" name="ibsn" />
+    <label for="isbn">IBSN:</label>
+    <input type="text" id="isbn" name="isbn" />
 
     <label for="autor">Autor:</label>
     <select id="autor" name="autor_id" th:field="${livro.autorId}">
@@ -38,5 +38,18 @@
   <br>
     <button th:formaction="@{/livro/cadastrar}" formmethod="post" type="submit" formenctype="multipart/form-data" class="btn btn-dark">Salvar</button>
 </form>
+<div th:if="${errors}" class="d-none">
+    <ul id="listaErros">
+        <li th:each='error : ${errors}' th:text='${error.defaultMessage}'></li>
+    </ul>
+    <script>
+        const errorHtml = document.querySelector('#listaErros');
+       Swal.fire({
+               title: 'Error ao cadastrar',
+                icon: 'error',
+                html: errorHtml.innerHTML
+        })
+    </script>
+</div>
 </body>
 </html>
