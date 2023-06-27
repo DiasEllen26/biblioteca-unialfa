@@ -73,10 +73,20 @@ public class LivroController {
         }
 
     }
+    @GetMapping("/pesquisar")
+    public String pesquisarLivros(@RequestParam("termo") String termo, Model model) {
+        model.addAttribute("MensagemTelaInicil", "Livros encontrados");
+        model.addAttribute("livros", service.pesquisarLivros(termo));
+        return "livro/lista";
+    }
+
+
     @GetMapping("/alterar/{id}")
     public String editar(@PathVariable Long id, Model model){
         model.addAttribute("MensagemTelaInicil", "Editar dados do livro!");
-        model.addAttribute("livro", service.listarTodos());
+        model.addAttribute("livro", service.buscarPorId(id));
+        model.addAttribute("autores", serviceAutor.listarTodos());
+        model.addAttribute("editoras", serviceEditora.listarTodos());
         return "livro/formulario";
     }
 
@@ -88,7 +98,7 @@ public class LivroController {
         try {
             cloudinary.uploader().destroy(imagePublicId, ObjectUtils.emptyMap());
             service.deletarPorId(id);
-            return "redirect:/livro/";
+            return "redirect:/livro/lista";
         } catch (IOException e) {
             System.out.println("Erro de IO ao excluir a imagem: " + e.getMessage());
             return "redirect:/erro";
